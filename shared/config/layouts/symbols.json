@@ -1,0 +1,241 @@
+{
+  "id": "symbols",
+  "name": "Symbols",
+  "language": "symbols",
+  "direction": "ltr",
+  "rows": [
+    [
+      {
+        "label": "[",
+        "output": "[",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "]",
+        "output": "]",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "{",
+        "output": "{",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "}",
+        "output": "}",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "#",
+        "output": "#",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "%",
+        "output": "%",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "٪"
+        ]
+      },
+      {
+        "label": "^",
+        "output": "^",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "*",
+        "output": "*",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "+",
+        "output": "+",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "=",
+        "output": "=",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "≠",
+          "≈"
+        ]
+      }
+    ],
+    [
+      {
+        "label": "_",
+        "output": "_",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "\\",
+        "output": "\\",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "|",
+        "output": "|",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "~",
+        "output": "~",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "<",
+        "output": "<",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "«"
+        ]
+      },
+      {
+        "label": ">",
+        "output": ">",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "»"
+        ]
+      },
+      {
+        "label": "€",
+        "output": "€",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "£",
+        "output": "£",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "¥",
+        "output": "¥",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "•",
+        "output": "•",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      }
+    ],
+    [
+      {
+        "label": "123",
+        "type": "MODE",
+        "action": "SWITCH_LAYOUT",
+        "target": "numbers_symbols",
+        "weight": 1.4
+      },
+      {
+        "label": "…",
+        "output": "…",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "—",
+        "output": "—",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "–",
+          "-"
+        ]
+      },
+      {
+        "label": "؟",
+        "output": "؟",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "؛",
+        "output": "؛",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "«",
+        "output": "«",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "»",
+        "output": "»",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "@",
+        "output": "@",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "⌫",
+        "type": "BACKSPACE",
+        "action": "DELETE_BACKWARD",
+        "weight": 1.4
+      }
+    ],
+    [
+      {
+        "label": "ABC / بر",
+        "type": "MODE",
+        "action": "RESTORE_PREVIOUS_LAYOUT",
+        "target": "previous",
+        "weight": 1.5
+      },
+      {
+        "label": "space",
+        "output": " ",
+        "type": "SPACE",
+        "action": "INSERT_SPACE",
+        "weight": 4.2
+      },
+      {
+        "label": "🌐",
+        "type": "LANGUAGE",
+        "action": "SWITCH_KEYBOARD",
+        "weight": 1.0
+      },
+      {
+        "label": "۔",
+        "output": "۔",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "weight": 1.0
+      },
+      {
+        "label": "↵",
+        "type": "ENTER",
+        "action": "SUBMIT",
+        "weight": 1.5
+      }
+    ]
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "harakat": [
+    {
+      "id": "zabar",
+      "name": "Zabar (Fatha)",
+      "symbol": "◌َ",
+      "output": "\u064E",
+      "unicode": "U+064E",
+      "description": "Short 'a' vowel above letter"
+    },
+    {
+      "id": "zer",
+      "name": "Zer (Kasra)",
+      "symbol": "◌ِ",
+      "output": "\u0650",
+      "unicode": "U+0650",
+      "description": "Short 'i' vowel below letter"
+    },
+    {
+      "id": "pesh",
+      "name": "Pesh (Damma)",
+      "symbol": "◌ُ",
+      "output": "\u064F",
+      "unicode": "U+064F",
+      "description": "Short 'u' vowel above letter"
+    },
+    {
+      "id": "tashdeed",
+      "name": "Tashdeed (Shadda)",
+      "symbol": "◌ّ",
+      "output": "\u0651",
+      "unicode": "U+0651",
+      "description": "Consonant gemination mark"
+    },
+    {
+      "id": "jazm",
+      "name": "Jazm (Sukun)",
+      "symbol": "◌ْ",
+      "output": "\u0652",
+      "unicode": "U+0652",
+      "description": "Absence of vowel / consonant stop"
+    },
+    {
+      "id": "khari_zabar",
+      "name": "Khari Zabar (Dagger Alif)",
+      "symbol": "◌ٰ",
+      "output": "\u0670",
+      "unicode": "U+0670",
+      "description": "Long 'aa' vowel"
+    },
+    {
+      "id": "do_zabar",
+      "name": "Do Zabar (Tanween Fatha)",
+      "symbol": "◌ً",
+      "output": "\u064B",
+      "unicode": "U+064B",
+      "description": "Nunation -an sound"
+    },
+    {
+      "id": "do_zer",
+      "name": "Do Zer (Tanween Kasra)",
+      "symbol": "◌ٍ",
+      "output": "\u064D",
+      "unicode": "U+064D",
+      "description": "Nunation -in sound"
+    },
+    {
+      "id": "do_pesh",
+      "name": "Do Pesh (Tanween Damma)",
+      "symbol": "◌ٌ",
+      "output": "\u064C",
+      "unicode": "U+064C",
+      "description": "Nunation -un sound"
+    },
+    {
+      "id": "maddah",
+      "name": "Maddah",
+      "symbol": "◌ٓ",
+      "output": "\u0653",
+      "unicode": "U+0653",
+      "description": "Vowel prolongation mark"
+    },
+    {
+      "id": "hamza_above",
+      "name": "Hamza Above",
+      "symbol": "◌ٔ",
+      "output": "\u0654",
+      "unicode": "U+0654",
+      "description": "Glottal stop above vowel base"
+    }
+  ]
+}

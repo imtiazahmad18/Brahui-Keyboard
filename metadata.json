@@ -1,0 +1,6 @@
+{
+  "name": "Brahui Keyboard",
+  "description": "Production-quality system-wide Brahui keyboard application for Android and iOS with Flutter companion settings and native platform keyboard engines.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

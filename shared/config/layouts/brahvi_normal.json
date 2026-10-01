@@ -1,0 +1,299 @@
+{
+  "id": "brahvi_normal",
+  "name": "Brahui Normal",
+  "language": "brahvi",
+  "direction": "rtl",
+  "rows": [
+    [
+      {
+        "label": "ق",
+        "output": "ق",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "و",
+        "output": "و",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ؤ"
+        ]
+      },
+      {
+        "label": "ع",
+        "output": "ع",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "غ"
+        ]
+      },
+      {
+        "label": "ر",
+        "output": "ر",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ڑ"
+        ]
+      },
+      {
+        "label": "ت",
+        "output": "ت",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ٹ"
+        ]
+      },
+      {
+        "label": "ے",
+        "output": "ے",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ء",
+        "output": "ء",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ئ"
+        ]
+      },
+      {
+        "label": "ی",
+        "output": "ی",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ي"
+        ]
+      },
+      {
+        "label": "ہ",
+        "output": "ہ",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ھ",
+          "ۂ",
+          "ۃ"
+        ]
+      },
+      {
+        "label": "پ",
+        "output": "پ",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      }
+    ],
+    [
+      {
+        "label": "ا",
+        "output": "ا",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "آ",
+          "أ",
+          "إ",
+          "ٱ"
+        ]
+      },
+      {
+        "label": "س",
+        "output": "س",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ش",
+          "ث"
+        ]
+      },
+      {
+        "label": "د",
+        "output": "د",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ذ"
+        ]
+      },
+      {
+        "label": "ف",
+        "output": "ف",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ڤ"
+        ]
+      },
+      {
+        "label": "گ",
+        "output": "گ",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ح",
+        "output": "ح",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ج",
+        "output": "ج",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ک",
+        "output": "ک",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ل",
+        "output": "ل",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ڷ"
+        ]
+      },
+      {
+        "label": "م",
+        "output": "م",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      }
+    ],
+    [
+      {
+        "label": "⇧",
+        "type": "SHIFT",
+        "action": "SWITCH_LAYOUT",
+        "target": "brahvi_shift",
+        "weight": 1.25,
+        "alternates": []
+      },
+      {
+        "label": "ز",
+        "output": "ز",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ژ",
+          "ذ"
+        ]
+      },
+      {
+        "label": "ن",
+        "output": "ن",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ں"
+        ]
+      },
+      {
+        "label": "ب",
+        "output": "ب",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ٻ"
+        ]
+      },
+      {
+        "label": "چ",
+        "output": "چ",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "خ",
+        "output": "خ",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "⌫",
+        "type": "BACKSPACE",
+        "action": "DELETE_BACKWARD",
+        "weight": 1.25,
+        "alternates": []
+      }
+    ],
+    [
+      {
+        "label": "123",
+        "type": "MODE",
+        "action": "SWITCH_LAYOUT",
+        "target": "numbers_symbols",
+        "weight": 1.2,
+        "alternates": []
+      },
+      {
+        "label": "EN",
+        "type": "LANGUAGE",
+        "action": "SWITCH_LANGUAGE",
+        "target": "english_normal",
+        "weight": 1.0,
+        "alternates": []
+      },
+      {
+        "label": "◌َ",
+        "type": "HARAKAT",
+        "action": "OPEN_HARAKAT",
+        "weight": 1.0,
+        "alternates": []
+      },
+      {
+        "label": "space",
+        "output": " ",
+        "type": "SPACE",
+        "action": "INSERT_SPACE",
+        "weight": 3.0,
+        "alternates": []
+      },
+      {
+        "label": "🌐",
+        "type": "LANGUAGE",
+        "action": "SWITCH_KEYBOARD",
+        "weight": 1.0,
+        "alternates": []
+      },
+      {
+        "label": "۔",
+        "output": "۔",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "،",
+          "؟"
+        ],
+        "weight": 1.0
+      },
+      {
+        "label": "↵",
+        "type": "ENTER",
+        "action": "SUBMIT",
+        "weight": 1.3,
+        "alternates": []
+      }
+    ]
+  ]
+}

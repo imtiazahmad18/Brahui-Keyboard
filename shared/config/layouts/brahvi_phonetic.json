@@ -1,0 +1,284 @@
+{
+  "id": "brahvi_phonetic",
+  "name": "Brahui Phonetic",
+  "language": "brahvi",
+  "direction": "rtl",
+  "rows": [
+    [
+      {
+        "label": "ق",
+        "output": "ق",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "و",
+        "output": "و",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ع",
+        "output": "ع",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ر",
+        "output": "ر",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ڑ"
+        ]
+      },
+      {
+        "label": "ت",
+        "output": "ت",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ٹ"
+        ]
+      },
+      {
+        "label": "ے",
+        "output": "ے",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ء",
+        "output": "ء",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ی",
+        "output": "ی",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ہ",
+        "output": "ہ",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ھ"
+        ]
+      },
+      {
+        "label": "پ",
+        "output": "پ",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      }
+    ],
+    [
+      {
+        "label": "ا",
+        "output": "ا",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "آ"
+        ]
+      },
+      {
+        "label": "س",
+        "output": "س",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "د",
+        "output": "د",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ف",
+        "output": "ف",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "گ",
+        "output": "گ",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ح",
+        "output": "ح",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "خ"
+        ]
+      },
+      {
+        "label": "ج",
+        "output": "ج",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ک",
+        "output": "ک",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ل",
+        "output": "ل",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ڷ"
+        ]
+      }
+    ],
+    [
+      {
+        "label": "⇧",
+        "type": "SHIFT",
+        "action": "SWITCH_LAYOUT",
+        "target": "brahvi_phonetic_shift",
+        "weight": 1.25,
+        "alternates": []
+      },
+      {
+        "label": "ز",
+        "output": "ز",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ژ"
+        ]
+      },
+      {
+        "label": "ش",
+        "output": "ش",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "چ",
+        "output": "چ",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ط",
+        "output": "ط",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ظ"
+        ]
+      },
+      {
+        "label": "ب",
+        "output": "ب",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "ن",
+        "output": "ن",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ں"
+        ]
+      },
+      {
+        "label": "م",
+        "output": "م",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "⌫",
+        "type": "BACKSPACE",
+        "action": "DELETE_BACKWARD",
+        "weight": 1.25,
+        "alternates": []
+      }
+    ],
+    [
+      {
+        "label": "123",
+        "type": "MODE",
+        "action": "SWITCH_LAYOUT",
+        "target": "numbers_symbols",
+        "weight": 1.2,
+        "alternates": []
+      },
+      {
+        "label": "EN",
+        "type": "LANGUAGE",
+        "action": "SWITCH_LANGUAGE",
+        "target": "english_normal",
+        "weight": 1.0,
+        "alternates": []
+      },
+      {
+        "label": "◌َ",
+        "type": "HARAKAT",
+        "action": "OPEN_HARAKAT",
+        "weight": 1.0,
+        "alternates": []
+      },
+      {
+        "label": "space",
+        "output": " ",
+        "type": "SPACE",
+        "action": "INSERT_SPACE",
+        "weight": 3.0,
+        "alternates": []
+      },
+      {
+        "label": "🌐",
+        "type": "LANGUAGE",
+        "action": "SWITCH_KEYBOARD",
+        "weight": 1.0,
+        "alternates": []
+      },
+      {
+        "label": "۔",
+        "output": "۔",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [],
+        "weight": 1.0
+      },
+      {
+        "label": "↵",
+        "type": "ENTER",
+        "action": "SUBMIT",
+        "weight": 1.3,
+        "alternates": []
+      }
+    ]
+  ]
+}

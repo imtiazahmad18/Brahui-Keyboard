@@ -1,0 +1,335 @@
+{
+  "id": "numbers_symbols",
+  "name": "Numbers and Symbols",
+  "language": "numbers",
+  "direction": "ltr",
+  "rows": [
+    [
+      {
+        "label": "1",
+        "output": "1",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "۱",
+          "!",
+          "¹"
+        ]
+      },
+      {
+        "label": "2",
+        "output": "2",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "۲",
+          "@",
+          "²"
+        ]
+      },
+      {
+        "label": "3",
+        "output": "3",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "۳",
+          "#",
+          "³"
+        ]
+      },
+      {
+        "label": "4",
+        "output": "4",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "۴",
+          "$",
+          "₹",
+          "£",
+          "€"
+        ]
+      },
+      {
+        "label": "5",
+        "output": "5",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "۵",
+          "%",
+          "‰"
+        ]
+      },
+      {
+        "label": "6",
+        "output": "6",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "۶",
+          "^"
+        ]
+      },
+      {
+        "label": "7",
+        "output": "7",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "۷",
+          "&"
+        ]
+      },
+      {
+        "label": "8",
+        "output": "8",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "۸",
+          "*"
+        ]
+      },
+      {
+        "label": "9",
+        "output": "9",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "۹",
+          "(",
+          "[",
+          "{"
+        ]
+      },
+      {
+        "label": "0",
+        "output": "0",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "۰",
+          ")",
+          "]",
+          "}"
+        ]
+      }
+    ],
+    [
+      {
+        "label": "-",
+        "output": "-",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "_",
+          "–",
+          "—"
+        ]
+      },
+      {
+        "label": "/",
+        "output": "/",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "\\"
+        ]
+      },
+      {
+        "label": ":",
+        "output": ":",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": ";",
+        "output": ";",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "؛"
+        ]
+      },
+      {
+        "label": "(",
+        "output": "(",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "<",
+          "«",
+          "["
+        ]
+      },
+      {
+        "label": ")",
+        "output": ")",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          ">",
+          "»",
+          "]"
+        ]
+      },
+      {
+        "label": "$",
+        "output": "$",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "₨",
+          "€",
+          "£",
+          "¥"
+        ]
+      },
+      {
+        "label": "&",
+        "output": "&",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "§"
+        ]
+      },
+      {
+        "label": "@",
+        "output": "@",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
+      },
+      {
+        "label": "\"",
+        "output": "\"",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "'",
+          "«",
+          "»"
+        ]
+      }
+    ],
+    [
+      {
+        "label": "#+=",
+        "type": "MODE",
+        "action": "SWITCH_LAYOUT",
+        "target": "symbols",
+        "weight": 1.4
+      },
+      {
+        "label": ".",
+        "output": ".",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "۔",
+          "…"
+        ]
+      },
+      {
+        "label": ",",
+        "output": ",",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "،"
+        ]
+      },
+      {
+        "label": "?",
+        "output": "?",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "؟"
+        ]
+      },
+      {
+        "label": "!",
+        "output": "!",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "¡"
+        ]
+      },
+      {
+        "label": "'",
+        "output": "'",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "`"
+        ]
+      },
+      {
+        "label": "+",
+        "output": "+",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "±"
+        ]
+      },
+      {
+        "label": "=",
+        "output": "=",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "≠",
+          "≈"
+        ]
+      },
+      {
+        "label": "⌫",
+        "type": "BACKSPACE",
+        "action": "DELETE_BACKWARD",
+        "weight": 1.4
+      }
+    ],
+    [
+      {
+        "label": "ABC / بر",
+        "type": "MODE",
+        "action": "RESTORE_PREVIOUS_LAYOUT",
+        "target": "previous",
+        "weight": 1.5
+      },
+      {
+        "label": "space",
+        "output": " ",
+        "type": "SPACE",
+        "action": "INSERT_SPACE",
+        "weight": 4.2
+      },
+      {
+        "label": "🌐",
+        "type": "LANGUAGE",
+        "action": "SWITCH_KEYBOARD",
+        "weight": 1.0
+      },
+      {
+        "label": "۔",
+        "output": "۔",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "weight": 1.0
+      },
+      {
+        "label": "↵",
+        "type": "ENTER",
+        "action": "SUBMIT",
+        "weight": 1.5
+      }
+    ]
+  ]
+}

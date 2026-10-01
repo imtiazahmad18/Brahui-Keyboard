@@ -1,0 +1,237 @@
+{
+  "id": "brahvi_shift",
+  "name": "Brahui Symbols",
+  "language": "brahvi",
+  "direction": "rtl",
+  "rows": [
+    [
+      {
+        "label": "!",
+        "output": "!",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "@",
+        "output": "@",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "#",
+        "output": "#",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "$",
+        "output": "$",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "%",
+        "output": "%",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "^",
+        "output": "^",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "&",
+        "output": "&",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "*",
+        "output": "*",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "(",
+        "output": "(",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": ")",
+        "output": ")",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      }
+    ],
+    [
+      {
+        "label": "-",
+        "output": "-",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "_",
+        "output": "_",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "ڈ",
+        "output": "ڈ",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "=",
+        "output": "=",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "[",
+        "output": "[",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "]",
+        "output": "]",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "{",
+        "output": "{",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "}",
+        "output": "}",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "\\",
+        "output": "\\",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "|",
+        "output": "|",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      }
+    ],
+    [
+      {
+        "label": "⇧",
+        "type": "SHIFT",
+        "action": "SWITCH_LAYOUT",
+        "target": "brahvi_normal",
+        "active": true,
+        "weight": 1.25
+      },
+      {
+        "label": ";",
+        "output": ";",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": ":",
+        "output": ":",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "'",
+        "output": "'",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "\"",
+        "output": "\"",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": ",",
+        "output": ",",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": ".",
+        "output": ".",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "/",
+        "output": "/",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "?",
+        "output": "?",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT"
+      },
+      {
+        "label": "⌫",
+        "type": "BACKSPACE",
+        "action": "DELETE_BACKWARD",
+        "weight": 1.25
+      }
+    ],
+    [
+      {
+        "label": "123",
+        "type": "MODE",
+        "action": "SWITCH_LAYOUT",
+        "target": "numbers_symbols",
+        "weight": 1.2
+      },
+      {
+        "label": "EN",
+        "type": "LANGUAGE",
+        "action": "SWITCH_LANGUAGE",
+        "target": "english_normal",
+        "weight": 1.0
+      },
+      {
+        "label": "◌َ",
+        "type": "HARAKAT",
+        "action": "OPEN_HARAKAT",
+        "weight": 1.0
+      },
+      {
+        "label": "space",
+        "output": " ",
+        "type": "SPACE",
+        "action": "INSERT_SPACE",
+        "weight": 3.9000000000000004
+      },
+      {
+        "label": "🌐",
+        "type": "LANGUAGE",
+        "action": "SWITCH_KEYBOARD",
+        "weight": 1.0
+      },
+      {
+        "label": "↵",
+        "type": "ENTER",
+        "action": "SUBMIT",
+        "weight": 1.3
+      }
+    ]
+  ]
+}

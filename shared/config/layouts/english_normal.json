@@ -1,0 +1,340 @@
+{
+  "id": "english_normal",
+  "name": "English Normal",
+  "language": "english",
+  "direction": "ltr",
+  "rows": [
+    [
+      {
+        "label": "q",
+        "output": "q",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "1",
+          "ق"
+        ]
+      },
+      {
+        "label": "w",
+        "output": "w",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "2",
+          "و"
+        ]
+      },
+      {
+        "label": "e",
+        "output": "e",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "3",
+          "é",
+          "è",
+          "ê",
+          "ع"
+        ]
+      },
+      {
+        "label": "r",
+        "output": "r",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "4",
+          "ر",
+          "ڑ"
+        ]
+      },
+      {
+        "label": "t",
+        "output": "t",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "5",
+          "ت",
+          "ٹ"
+        ]
+      },
+      {
+        "label": "y",
+        "output": "y",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "6",
+          "ے"
+        ]
+      },
+      {
+        "label": "u",
+        "output": "u",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "7",
+          "ú",
+          "ù",
+          "ü",
+          "ء"
+        ]
+      },
+      {
+        "label": "i",
+        "output": "i",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "8",
+          "í",
+          "ì",
+          "ی"
+        ]
+      },
+      {
+        "label": "o",
+        "output": "o",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "9",
+          "ó",
+          "ò",
+          "ö",
+          "ہ"
+        ]
+      },
+      {
+        "label": "p",
+        "output": "p",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "0",
+          "پ"
+        ]
+      }
+    ],
+    [
+      {
+        "label": "a",
+        "output": "a",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "á",
+          "à",
+          "ä",
+          "â",
+          "ا"
+        ]
+      },
+      {
+        "label": "s",
+        "output": "s",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ß",
+          "س"
+        ]
+      },
+      {
+        "label": "d",
+        "output": "d",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "د",
+          "ڈ"
+        ]
+      },
+      {
+        "label": "f",
+        "output": "f",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ف"
+        ]
+      },
+      {
+        "label": "g",
+        "output": "g",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "گ"
+        ]
+      },
+      {
+        "label": "h",
+        "output": "h",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ح"
+        ]
+      },
+      {
+        "label": "j",
+        "output": "j",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ج"
+        ]
+      },
+      {
+        "label": "k",
+        "output": "k",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ک"
+        ]
+      },
+      {
+        "label": "l",
+        "output": "l",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ل",
+          "ڷ"
+        ]
+      }
+    ],
+    [
+      {
+        "label": "⇧",
+        "type": "SHIFT",
+        "action": "SWITCH_LAYOUT",
+        "target": "english_shift",
+        "weight": 1.4
+      },
+      {
+        "label": "z",
+        "output": "z",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ز"
+        ]
+      },
+      {
+        "label": "x",
+        "output": "x",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ش"
+        ]
+      },
+      {
+        "label": "c",
+        "output": "c",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ç",
+          "چ"
+        ]
+      },
+      {
+        "label": "v",
+        "output": "v",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ط"
+        ]
+      },
+      {
+        "label": "b",
+        "output": "b",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ب"
+        ]
+      },
+      {
+        "label": "n",
+        "output": "n",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ñ",
+          "ن"
+        ]
+      },
+      {
+        "label": "m",
+        "output": "m",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "م"
+        ]
+      },
+      {
+        "label": "⌫",
+        "type": "BACKSPACE",
+        "action": "DELETE_BACKWARD",
+        "weight": 1.4
+      }
+    ],
+    [
+      {
+        "label": "123",
+        "type": "MODE",
+        "action": "SWITCH_LAYOUT",
+        "target": "numbers_symbols",
+        "weight": 1.3
+      },
+      {
+        "label": "براہوئی",
+        "type": "LANGUAGE",
+        "action": "SWITCH_LANGUAGE",
+        "target": "brahvi_normal",
+        "weight": 1.3
+      },
+      {
+        "label": "space",
+        "output": " ",
+        "type": "SPACE",
+        "action": "INSERT_SPACE",
+        "weight": 3.7
+      },
+      {
+        "label": "🌐",
+        "type": "LANGUAGE",
+        "action": "SWITCH_KEYBOARD",
+        "weight": 1.0
+      },
+      {
+        "label": ".",
+        "output": ".",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          ",",
+          "?",
+          "!"
+        ],
+        "weight": 1.0
+      },
+      {
+        "label": "↵",
+        "type": "ENTER",
+        "action": "SUBMIT",
+        "weight": 1.4
+      }
+    ]
+  ]
+}

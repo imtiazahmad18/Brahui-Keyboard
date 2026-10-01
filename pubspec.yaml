@@ -1,0 +1,32 @@
+name: brahvi_keyboard
+description: "A production-quality system-wide Brahui Keyboard app for Android and iOS."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.5.5
+  provider: ^6.1.5+1
+  flutter_svg: ^2.3.0
+  google_fonts: ^8.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.2
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/brahui_keyboard_logo.png
+    - shared/config/
+    - shared/config/layouts/
+    - shared/dictionaries/
+  fonts:
+    - family: NooriNastaliq
+      fonts:
+        - asset: NooriNastaliq.ttf

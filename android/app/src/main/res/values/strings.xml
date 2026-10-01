@@ -1,0 +1,5 @@
+<resources>
+    <string name="ime_name">Brahui Keyboard</string>
+    <string name="keyboard_subtype_brahvi">Brahui</string>
+    <string name="keyboard_subtype_english">English</string>
+</resources>
