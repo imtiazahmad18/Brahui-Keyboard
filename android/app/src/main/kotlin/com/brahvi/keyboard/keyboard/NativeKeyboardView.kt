@@ -11,12 +11,19 @@ import android.os.Looper
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowInsets
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.ImageButton
+import android.widget.BaseAdapter
+import android.widget.AbsListView
+import android.widget.GridView
+import android.widget.HorizontalScrollView
+import org.json.JSONObject
+import kotlin.math.abs
 import com.brahvi.keyboard.model.KeyAction
 import com.brahvi.keyboard.model.KeyType
 import com.brahvi.keyboard.model.NativeKey
@@ -44,6 +51,16 @@ class NativeKeyboardView(
     private val toolbarButtons = mutableListOf<ImageButton>()
     private val innerKeyboardView: KeyCanvasView
     private var currentTheme: NativeTheme = NativeTheme.defaultNavyDark()
+    private lateinit var emojiKeyboardView: LinearLayout
+    private lateinit var emojiGrid: GridView
+    private val emojiCategoryButtons = mutableListOf<TextView>()
+    private var emojiCategoryIndex = 0
+    private var showingEmojiKeyboard = false
+    private val emojiCategories by lazy { loadEmojiCategories() }
+    private val emojiCategoryNames = listOf(
+        "Smileys", "People", "Animals & Nature", "Food & Drink", "Travel & Places",
+        "Activities", "Objects", "Symbols", "Flags"
+    )
 
     init {
         orientation = VERTICAL
@@ -96,7 +113,7 @@ class NativeKeyboardView(
         suggestionBarContainer.addView(toolbarButton(R.drawable.ime_settings, "Settings") { onOpenSettings?.invoke() })
         suggestionBarContainer.addView(toolbarButton(R.drawable.ime_clipboard, "Clipboard") { onOpenClipboard?.invoke() })
         suggestionBarContainer.addView(toolbarButton(R.drawable.ime_palette, "Themes") { onOpenThemes?.invoke() })
-        suggestionBarContainer.addView(toolbarButton(R.drawable.ime_emoji, "Emojis") { showEmojiPicker() })
+        suggestionBarContainer.addView(toolbarButton(R.drawable.ime_emoji, "Emojis") { toggleEmojiKeyboard() })
 
         addView(
             suggestionBarContainer,
@@ -109,6 +126,14 @@ class NativeKeyboardView(
             innerKeyboardView,
             LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
         )
+
+        emojiKeyboardView = createEmojiKeyboard()
+        emojiKeyboardView.visibility = GONE
+        addView(
+            emojiKeyboardView,
+            LayoutParams(LayoutParams.MATCH_PARENT, (220 * prefs.heightRatio * resources.displayMetrics.density).toInt())
+        )
+        showEmojiCategory(emojiCategoryIndex)
     }
 
     fun setLayout(layout: NativeLayout) {
@@ -123,6 +148,9 @@ class NativeKeyboardView(
             tv.setTextColor(theme.suggestionBarText)
         }
         toolbarButtons.forEach { it.imageTintList = android.content.res.ColorStateList.valueOf(theme.secondaryText) }
+        emojiKeyboardView.setBackgroundColor(theme.keyboardBackground)
+        emojiCategoryButtons.forEachIndexed { index, button -> styleEmojiCategoryButton(button, index == emojiCategoryIndex) }
+        emojiGrid.setBackgroundColor(theme.keyboardBackground)
         innerKeyboardView.applyTheme(theme)
     }
 
@@ -155,49 +183,124 @@ class NativeKeyboardView(
             setOnClickListener { action() }
         }
 
-    /** A compact, rounded emoji sheet with selectable Unicode emoji. */
-    private fun showEmojiPicker() {
+    /** Replace the letter keys with a full-screen emoji keyboard; tapping again returns to letters. */
+    private fun toggleEmojiKeyboard() {
+        showingEmojiKeyboard = !showingEmojiKeyboard
+        innerKeyboardView.visibility = if (showingEmojiKeyboard) GONE else VISIBLE
+        emojiKeyboardView.visibility = if (showingEmojiKeyboard) VISIBLE else GONE
+        toolbarButtons.lastOrNull()?.contentDescription = if (showingEmojiKeyboard) "Back to keyboard" else "Emojis"
+        if (showingEmojiKeyboard) showEmojiCategory(emojiCategoryIndex)
+    }
+
+    private fun loadEmojiCategories(): Map<String, List<String>> {
+        return runCatching {
+            val json = context.assets.open("flutter_assets/shared/config/emoji_catalog.json")
+                .bufferedReader().use { JSONObject(it.readText()) }
+            val categories = json.getJSONObject("categories")
+            emojiCategoryNames.associateWith { name ->
+                val array = categories.optJSONArray(name) ?: return@associateWith emptyList()
+                List(array.length()) { index -> array.getString(index) }
+            }
+        }.getOrElse { emptyMap() }
+    }
+
+    private fun createEmojiKeyboard(): LinearLayout {
         val density = resources.displayMetrics.density
-        val emojis = listOf(
-            "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😇", "🙂", "🙃",
-            "😉", "😍", "🥰", "😘", "😋", "😎", "🤩", "🥳", "😭", "😢", "😡", "🤔",
-            "👍", "👎", "👏", "🙏", "🤝", "💪", "👋", "❤️", "💙", "💚", "💯", "✨",
-            "🔥", "🌟", "🌹", "🌙", "☀️", "🍎", "🍕", "☕", "⚽", "🎉", "🚗", "✈️"
-        )
-        lateinit var popup: PopupWindow
-        val sheet = LinearLayout(context).apply {
+        val panel = LinearLayout(context).apply {
             orientation = VERTICAL
-            setPadding((8 * density).toInt(), (8 * density).toInt(), (8 * density).toInt(), (8 * density).toInt())
-            background = android.graphics.drawable.GradientDrawable().apply {
-                setColor(currentTheme.suggestionBarBackground)
-                cornerRadius = 18 * density
-                setStroke((1 * density).toInt(), currentTheme.dividerColor)
+            setPadding((4 * density).toInt(), (4 * density).toInt(), (4 * density).toInt(), 0)
+        }
+        val categoryStrip = LinearLayout(context).apply { orientation = HORIZONTAL }
+        emojiCategoryNames.forEachIndexed { index, name ->
+            val button = TextView(context).apply {
+                text = categoryIcon(name)
+                textSize = 19f
+                gravity = Gravity.CENTER
+                contentDescription = name
+                setPadding((12 * density).toInt(), 0, (12 * density).toInt(), 0)
+                setOnClickListener { showEmojiCategory(index) }
+            }
+            emojiCategoryButtons.add(button)
+            categoryStrip.addView(button, LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT))
+        }
+        val categoriesScroll = HorizontalScrollView(context).apply {
+            isHorizontalScrollBarEnabled = false
+            addView(categoryStrip, ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT))
+        }
+        panel.addView(categoriesScroll, LayoutParams(LayoutParams.MATCH_PARENT, (42 * density).toInt()))
+
+        emojiGrid = GridView(context).apply {
+            numColumns = 8
+            horizontalSpacing = (2 * density).toInt()
+            verticalSpacing = (2 * density).toInt()
+            stretchMode = GridView.STRETCH_COLUMN_WIDTH
+            isVerticalScrollBarEnabled = true
+            setOnItemClickListener { _, _, position, _ ->
+                val emoji = (adapter as? EmojiAdapter)?.items?.getOrNull(position) ?: return@setOnItemClickListener
+                onKeyAction(NativeKey(emoji, emoji, KeyType.CHARACTER, KeyAction.INSERT_TEXT))
             }
         }
-        emojis.chunked(6).forEach { emojiRow ->
-            val row = LinearLayout(context).apply { orientation = HORIZONTAL }
-            emojiRow.forEach { emoji ->
-                row.addView(TextView(context).apply {
-                    text = emoji
-                    textSize = 26f
-                    gravity = Gravity.CENTER
-                    contentDescription = emoji
-                    setBackgroundResource(android.R.drawable.list_selector_background)
-                    layoutParams = LayoutParams(0, (44 * density).toInt(), 1f)
-                    setOnClickListener {
-                        onKeyAction(NativeKey(emoji, emoji, KeyType.CHARACTER, KeyAction.INSERT_TEXT))
-                        popup.dismiss()
+        var touchStartX = 0f
+        emojiGrid.setOnTouchListener { _, event ->
+            when (event.actionMasked) {
+                MotionEvent.ACTION_DOWN -> touchStartX = event.x
+                MotionEvent.ACTION_UP -> {
+                    val deltaX = event.x - touchStartX
+                    if (abs(deltaX) > 72 * density) {
+                        showEmojiCategory(emojiCategoryIndex + if (deltaX < 0) 1 else -1)
+                        return@setOnTouchListener true
                     }
-                })
+                }
             }
-            sheet.addView(row)
+            false
         }
-        popup = PopupWindow(sheet, (minOf(360, resources.displayMetrics.widthPixels / density.toInt()) * density).toInt(), LayoutParams.WRAP_CONTENT, true).apply {
-            elevation = 12 * density
-            isOutsideTouchable = true
+        panel.addView(emojiGrid, LayoutParams(LayoutParams.MATCH_PARENT, 0, 1f))
+        return panel
+    }
+
+    private fun showEmojiCategory(index: Int) {
+        emojiCategoryIndex = index.coerceIn(0, emojiCategoryNames.lastIndex)
+        emojiCategoryButtons.forEachIndexed { buttonIndex, button ->
+            styleEmojiCategoryButton(button, buttonIndex == emojiCategoryIndex)
         }
-        val anchor = suggestionBarContainer.getChildAt(suggestionBarContainer.childCount - 1)
-        if (anchor != null) popup.showAsDropDown(anchor, 0, 0)
+        val category = emojiCategoryNames[emojiCategoryIndex]
+        emojiGrid.adapter = EmojiAdapter(emojiCategories[category].orEmpty())
+        emojiGrid.smoothScrollToPosition(0)
+    }
+
+    private fun styleEmojiCategoryButton(button: TextView, selected: Boolean) {
+        button.setTextColor(if (selected) currentTheme.primaryText else currentTheme.secondaryText)
+        button.setBackgroundColor(if (selected) currentTheme.specialKeyBackground else Color.TRANSPARENT)
+    }
+
+    private fun categoryIcon(name: String) = when (name) {
+        "Smileys" -> "☻"
+        "People" -> "☝"
+        "Animals & Nature" -> "♧"
+        "Food & Drink" -> "♨"
+        "Travel & Places" -> "⌂"
+        "Activities" -> "⚽"
+        "Objects" -> "▣"
+        "Symbols" -> "♡"
+        else -> "⚑"
+    }
+
+    private inner class EmojiAdapter(val items: List<String>) : BaseAdapter() {
+        private val size = (42 * resources.displayMetrics.density).toInt()
+        override fun getCount() = items.size
+        override fun getItem(position: Int) = items[position]
+        override fun getItemId(position: Int) = position.toLong()
+        override fun getView(position: Int, convertView: View?, parent: android.view.ViewGroup): View {
+            val cell = (convertView as? TextView) ?: TextView(context).apply {
+                gravity = Gravity.CENTER
+                textSize = 24f
+                layoutParams = AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, size)
+                setBackgroundResource(android.R.drawable.list_selector_background)
+            }
+            cell.text = getItem(position)
+            cell.contentDescription = getItem(position)
+            return cell
+        }
     }
 
     fun showClipboardMenu(items: List<String>, onSelect: (String) -> Unit) {

@@ -139,7 +139,10 @@ internal class HarakatPopupView(
         width = WindowManager.LayoutParams.WRAP_CONTENT
         height = WindowManager.LayoutParams.WRAP_CONTENT
     }
-    private val symbols = listOf("\u064E", "\u0650", "\u0651", "\u064F", "\u0656", "\u0614", "\u064D")
+    private val symbols = listOf(
+        "\u064E", "\u0650", "\u0651", "\u064F", "\u0652", "\u0656",
+        "\u0614", "\u064B", "\u064C", "\u064D", "\u0610", "\u0613", "\u0653", "\u0654", "\u0670"
+    )
     private var cells: List<TextView> = emptyList()
     private var selected = -1
     private var stripView: LinearLayout? = null

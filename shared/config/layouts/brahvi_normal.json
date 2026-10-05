@@ -45,7 +45,9 @@
         "type": "CHARACTER",
         "action": "INSERT_TEXT",
         "alternates": [
-          "ٹ"
+          "ٹ",
+          "ط",
+          "ظ"
         ]
       },
       {
@@ -99,20 +101,19 @@
         "type": "CHARACTER",
         "action": "INSERT_TEXT",
         "alternates": [
-          "آ",
-          "أ",
-          "إ",
-          "ٱ"
+          "آ"
         ]
       },
       {
-        "label": "س",
-        "output": "س",
+        "label": "ش",
+        "output": "ش",
         "type": "CHARACTER",
         "action": "INSERT_TEXT",
         "alternates": [
-          "ش",
-          "ث"
+          "ث",
+          "س",
+          "ص",
+          "ض"
         ]
       },
       {
@@ -121,6 +122,7 @@
         "type": "CHARACTER",
         "action": "INSERT_TEXT",
         "alternates": [
+          "ڈ",
           "ذ"
         ]
       },
@@ -193,8 +195,7 @@
         "type": "CHARACTER",
         "action": "INSERT_TEXT",
         "alternates": [
-          "ژ",
-          "ذ"
+          "ژ"
         ]
       },
       {

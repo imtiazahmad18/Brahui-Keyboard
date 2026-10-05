@@ -71,15 +71,29 @@ object LayoutLoader {
     )
 
     private fun brahviFallback(): NativeLayout {
-        val row1 = listOf("ق", "و", "ع", "ر", "ت", "ے", "ء", "ی", "ہ", "پ").map {
-            if (it == "ت") charKey(it, "ٹ") else charKey(it)
+        val row1 = listOf("ق", "و", "ع", "ر", "ت", "ے", "ء", "ی", "پ", "ا").map {
+            when (it) {
+                "و" -> charKey(it, "ؤ")
+                "ع" -> charKey(it, "غ")
+                "ر" -> charKey(it, "ڑ")
+                "ت" -> charKey(it, "ٹ", "ط", "ظ")
+                "ء" -> charKey(it, "ئ")
+                "ا" -> charKey(it, "آ")
+                else -> charKey(it)
+            }
         }
-        val row2 = listOf("ا", "س", "د", "ف", "گ", "ح", "ج", "ک", "ل", "م").map {
-            if (it == "ل") charKey(it, "ڷ") else charKey(it)
+        val row2 = listOf("ش", "د", "ف", "گ", "ح", "ج", "ک", "ل", "م", "ز").map {
+            when (it) {
+                "ش" -> charKey(it, "ث", "س", "ص", "ض")
+                "د" -> charKey(it, "ڈ", "ذ")
+                "ل" -> charKey(it, "ڷ")
+                "ز" -> charKey(it, "ژ")
+                else -> charKey(it)
+            }
         }
         val row3 = listOf(
             NativeKey("⇧", null, KeyType.SHIFT, KeyAction.SWITCH_LAYOUT, "brahvi_shift", 1.25f),
-        ) + listOf("ز", "ڑ", "ڈ", "ن", "ب", "چ", "خ").map { charKey(it) } + listOf(
+        ) + listOf("ن", "ب", "چ", "خ").map { if (it == "ن") charKey(it, "ں") else charKey(it) } + listOf(
             NativeKey("⌫", null, KeyType.BACKSPACE, KeyAction.DELETE_BACKWARD, weight = 1.25f)
         )
         val row4 = listOf(

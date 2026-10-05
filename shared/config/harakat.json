@@ -4,7 +4,7 @@
       "id": "zabar",
       "name": "Zabar (Fatha)",
       "symbol": "◌َ",
-      "output": "\u064E",
+      "output": "َ",
       "unicode": "U+064E",
       "description": "Short 'a' vowel above letter"
     },
@@ -12,7 +12,7 @@
       "id": "zer",
       "name": "Zer (Kasra)",
       "symbol": "◌ِ",
-      "output": "\u0650",
+      "output": "ِ",
       "unicode": "U+0650",
       "description": "Short 'i' vowel below letter"
     },
@@ -20,7 +20,7 @@
       "id": "pesh",
       "name": "Pesh (Damma)",
       "symbol": "◌ُ",
-      "output": "\u064F",
+      "output": "ُ",
       "unicode": "U+064F",
       "description": "Short 'u' vowel above letter"
     },
@@ -28,7 +28,7 @@
       "id": "tashdeed",
       "name": "Tashdeed (Shadda)",
       "symbol": "◌ّ",
-      "output": "\u0651",
+      "output": "ّ",
       "unicode": "U+0651",
       "description": "Consonant gemination mark"
     },
@@ -36,7 +36,7 @@
       "id": "jazm",
       "name": "Jazm (Sukun)",
       "symbol": "◌ْ",
-      "output": "\u0652",
+      "output": "ْ",
       "unicode": "U+0652",
       "description": "Absence of vowel / consonant stop"
     },
@@ -44,7 +44,7 @@
       "id": "khari_zabar",
       "name": "Khari Zabar (Dagger Alif)",
       "symbol": "◌ٰ",
-      "output": "\u0670",
+      "output": "ٰ",
       "unicode": "U+0670",
       "description": "Long 'aa' vowel"
     },
@@ -52,7 +52,7 @@
       "id": "do_zabar",
       "name": "Do Zabar (Tanween Fatha)",
       "symbol": "◌ً",
-      "output": "\u064B",
+      "output": "ً",
       "unicode": "U+064B",
       "description": "Nunation -an sound"
     },
@@ -60,7 +60,7 @@
       "id": "do_zer",
       "name": "Do Zer (Tanween Kasra)",
       "symbol": "◌ٍ",
-      "output": "\u064D",
+      "output": "ٍ",
       "unicode": "U+064D",
       "description": "Nunation -in sound"
     },
@@ -68,7 +68,7 @@
       "id": "do_pesh",
       "name": "Do Pesh (Tanween Damma)",
       "symbol": "◌ٌ",
-      "output": "\u064C",
+      "output": "ٌ",
       "unicode": "U+064C",
       "description": "Nunation -un sound"
     },
@@ -76,7 +76,7 @@
       "id": "maddah",
       "name": "Maddah",
       "symbol": "◌ٓ",
-      "output": "\u0653",
+      "output": "ٓ",
       "unicode": "U+0653",
       "description": "Vowel prolongation mark"
     },
@@ -84,9 +84,25 @@
       "id": "hamza_above",
       "name": "Hamza Above",
       "symbol": "◌ٔ",
-      "output": "\u0654",
+      "output": "ٔ",
       "unicode": "U+0654",
       "description": "Glottal stop above vowel base"
+    },
+    {
+      "id": "sallallahu",
+      "name": "Sallallahu alayhi wa sallam",
+      "symbol": "◌ؐ",
+      "output": "ؐ",
+      "unicode": "U+0610",
+      "description": "Honorific mark"
+    },
+    {
+      "id": "radiallahu",
+      "name": "Radiallahu anhu",
+      "symbol": "◌ؓ",
+      "output": "ؓ",
+      "unicode": "U+0613",
+      "description": "Honorific mark"
     }
   ]
 }
