@@ -15,6 +15,12 @@ object UnicodeHelper {
 
     fun handleSafeBackspace(ic: InputConnection?) {
         if (ic == null) return
+        val selectedText = ic.getSelectedText(0)
+        if (!selectedText.isNullOrEmpty()) {
+            // Committing empty text replaces the active selection as one edit.
+            ic.commitText("", 1)
+            return
+        }
         val textBefore = ic.getTextBeforeCursor(4, 0)
         if (textBefore.isNullOrEmpty()) {
             ic.deleteSurroundingText(1, 0)

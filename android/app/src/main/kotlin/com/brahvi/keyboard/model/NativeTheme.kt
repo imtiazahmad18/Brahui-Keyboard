@@ -30,25 +30,47 @@ data class NativeTheme(
             }
         }
 
-        fun defaultNavyDark(): NativeTheme {
+        fun defaultSystemDark(): NativeTheme {
             return NativeTheme(
-                id = "navy_dark",
-                name = "Navy Dark",
+                id = "gboard_dark",
+                name = "System Dark",
                 isDark = true,
-                keyboardBackground = Color.parseColor("#123A5E"),
-                normalKeyBackground = Color.parseColor("#DCEFFD"),
-                normalKeyText = Color.parseColor("#0C2A44"),
-                pressedKeyBackground = Color.parseColor("#8CCDF2"),
-                actionKeyBackground = Color.parseColor("#5CB4E8"),
-                actionKeyText = Color.parseColor("#0C2A44"),
-                specialKeyBackground = Color.parseColor("#0C2A44"),
-                specialKeyText = Color.parseColor("#B9DFF7"),
-                primaryText = Color.parseColor("#F4FAFF"),
-                secondaryText = Color.parseColor("#8CCDF2"),
-                accentColor = Color.parseColor("#5CB4E8"),
-                suggestionBarBackground = Color.parseColor("#0C2A44"),
-                suggestionBarText = Color.parseColor("#F4FAFF"),
-                dividerColor = Color.parseColor("#214D70")
+                keyboardBackground = Color.parseColor("#263238"),
+                normalKeyBackground = Color.parseColor("#37474F"),
+                normalKeyText = Color.parseColor("#ECEFF1"),
+                pressedKeyBackground = Color.parseColor("#455A64"),
+                actionKeyBackground = Color.parseColor("#29B6F6"),
+                actionKeyText = Color.parseColor("#01579B"),
+                specialKeyBackground = Color.parseColor("#1E272C"),
+                specialKeyText = Color.parseColor("#B0BEC5"),
+                primaryText = Color.parseColor("#ECEFF1"),
+                secondaryText = Color.parseColor("#90A4AE"),
+                accentColor = Color.parseColor("#29B6F6"),
+                suggestionBarBackground = Color.parseColor("#1E272C"),
+                suggestionBarText = Color.parseColor("#ECEFF1"),
+                dividerColor = Color.parseColor("#37474F")
+            )
+        }
+
+        fun defaultSystemLight(): NativeTheme {
+            return NativeTheme(
+                id = "light_white",
+                name = "System Light",
+                isDark = false,
+                keyboardBackground = Color.parseColor("#F1F3F4"),
+                normalKeyBackground = Color.WHITE,
+                normalKeyText = Color.parseColor("#202124"),
+                pressedKeyBackground = Color.parseColor("#E8EAED"),
+                actionKeyBackground = Color.parseColor("#1A73E8"),
+                actionKeyText = Color.WHITE,
+                specialKeyBackground = Color.parseColor("#E0E3E7"),
+                specialKeyText = Color.parseColor("#3C4043"),
+                primaryText = Color.parseColor("#202124"),
+                secondaryText = Color.parseColor("#5F6368"),
+                accentColor = Color.parseColor("#1A73E8"),
+                suggestionBarBackground = Color.parseColor("#E8EAED"),
+                suggestionBarText = Color.parseColor("#202124"),
+                dividerColor = Color.parseColor("#DADCE0")
             )
         }
     }

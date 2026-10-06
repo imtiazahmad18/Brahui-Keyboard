@@ -23,6 +23,7 @@ internal class KeyPreviewPopup(context: Context, private val onAlternate: (Strin
     }
     private var cells: List<TextView> = emptyList()
     private var alternatives: List<String> = emptyList()
+    private var displayedAlternatives: List<String> = emptyList()
     private var selected = -1
 
     fun show(anchor: View, label: String, left: Int, top: Int, width: Int, height: Int) {
@@ -43,14 +44,18 @@ internal class KeyPreviewPopup(context: Context, private val onAlternate: (Strin
     fun showAlternates(anchor: View, values: List<String>, left: Int, top: Int, width: Int) {
         val density = anchor.resources.displayMetrics.density
         alternatives = values
-        selected = 0
+        // LinearLayout places the first child on the right in RTL, so the
+        // layout direction keeps the JSON alternate order in reading order.
+        displayedAlternatives = values
+        selected = displayedAlternatives.indexOf(values.firstOrNull()).coerceAtLeast(0)
         val strip = LinearLayout(anchor.context).apply {
             orientation = LinearLayout.HORIZONTAL
+            layoutDirection = anchor.layoutDirection
             gravity = Gravity.CENTER
             setPadding((5 * density).toInt(), (5 * density).toInt(), (5 * density).toInt(), (5 * density).toInt())
             background = bubble(density, Color.rgb(36, 44, 58))
         }
-        cells = values.mapIndexed { index, value ->
+        cells = displayedAlternatives.mapIndexed { index, value ->
             TextView(anchor.context).apply {
                 text = value
                 textSize = 27f
@@ -91,12 +96,12 @@ internal class KeyPreviewPopup(context: Context, private val onAlternate: (Strin
         }
         when (event.actionMasked) {
             MotionEvent.ACTION_UP -> {
-                val value = alternatives.getOrNull(selected.coerceAtLeast(0))
+                val value = displayedAlternatives.getOrNull(selected.coerceAtLeast(0))
                 dismiss()
                 if (value != null) onAlternate(value)
             }
             MotionEvent.ACTION_CANCEL -> {
-                val value = alternatives.getOrNull(selected.coerceAtLeast(0))
+                val value = displayedAlternatives.getOrNull(selected.coerceAtLeast(0))
                 dismiss()
                 if (value != null) onAlternate(value)
             }
@@ -121,6 +126,7 @@ internal class KeyPreviewPopup(context: Context, private val onAlternate: (Strin
     fun dismiss() {
         popup.dismiss()
         alternatives = emptyList()
+        displayedAlternatives = emptyList()
         cells = emptyList()
         selected = -1
     }
@@ -159,16 +165,24 @@ internal class HarakatPopupView(
         applyTheme(backgroundColor, keyColor, textColor, activeColor)
         val strip = LinearLayout(anchor.context).apply {
             orientation = LinearLayout.VERTICAL
+            clipChildren = false
+            clipToPadding = false
             setPadding((6 * density).toInt(), (6 * density).toInt(), (6 * density).toInt(), (6 * density).toInt())
             background = bubble(density, panelColor)
         }
         stripView = strip
         val built = mutableListOf<TextView>()
         symbols.chunked(7).forEach { rowSymbols ->
-            val row = LinearLayout(anchor.context).apply { orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER }
+            val row = LinearLayout(anchor.context).apply {
+                orientation = LinearLayout.HORIZONTAL
+                layoutDirection = anchor.layoutDirection
+                gravity = Gravity.CENTER
+                clipChildren = false
+                clipToPadding = false
+            }
             rowSymbols.forEach { symbol ->
                 TextView(anchor.context).apply {
-                    text = symbol
+                    text = "\u25CC$symbol"
                     textSize = 26f
                     typeface = markTypeface
                     gravity = Gravity.CENTER
@@ -204,6 +218,7 @@ internal class HarakatPopupView(
         stripView?.background = bubble(density, panelColor)
         cells.forEachIndexed { index, cell ->
             cell.setTextColor(markColor)
+            cell.text = "\u25CC${symbols[index]}"
             cell.background = bubble(density, if (index == selected) selectedColor else cellColor)
         }
     }

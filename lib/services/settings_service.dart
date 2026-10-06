@@ -24,7 +24,7 @@ class SettingsService extends ChangeNotifier with WidgetsBindingObserver {
   ThemeConfig get currentTheme {
     if (_settings.currentThemeId == 'system' && _themes.isNotEmpty) {
       final isDark = WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark;
-      final systemThemeId = isDark ? 'navy_dark' : 'light_white';
+      final systemThemeId = isDark ? 'gboard_dark' : 'light_white';
       return _themes.firstWhere(
         (theme) => theme.id == systemThemeId,
         orElse: () => _themes.first,
@@ -35,23 +35,23 @@ class SettingsService extends ChangeNotifier with WidgetsBindingObserver {
       orElse: () => _themes.isNotEmpty
           ? _themes.first
           : const ThemeConfig(
-              id: 'navy_dark',
-              name: 'Navy Dark',
-              isDark: true,
-              keyboardBackground: Color(0xFF123A5E),
-              normalKeyBackground: Color(0xFFDCEFFD),
-              normalKeyText: Color(0xFF0C2A44),
-              pressedKeyBackground: Color(0xFF8CCDF2),
-              actionKeyBackground: Color(0xFF5CB4E8),
-              actionKeyText: Color(0xFF0C2A44),
-              specialKeyBackground: Color(0xFF0C2A44),
-              specialKeyText: Color(0xFFB9DFF7),
-              primaryText: Color(0xFFF4FAFF),
-              secondaryText: Color(0xFF8CCDF2),
-              accentColor: Color(0xFF5CB4E8),
-              suggestionBarBackground: Color(0xFF0C2A44),
-              suggestionBarText: Color(0xFFF4FAFF),
-              dividerColor: Color(0xFF214D70),
+              id: 'light_white',
+              name: 'Light / White',
+              isDark: false,
+              keyboardBackground: Color(0xFFF1F3F4),
+              normalKeyBackground: Color(0xFFFFFFFF),
+              normalKeyText: Color(0xFF202124),
+              pressedKeyBackground: Color(0xFFE8EAED),
+              actionKeyBackground: Color(0xFF1A73E8),
+              actionKeyText: Color(0xFFFFFFFF),
+              specialKeyBackground: Color(0xFFE0E3E7),
+              specialKeyText: Color(0xFF3C4043),
+              primaryText: Color(0xFF202124),
+              secondaryText: Color(0xFF5F6368),
+              accentColor: Color(0xFF1A73E8),
+              suggestionBarBackground: Color(0xFFE8EAED),
+              suggestionBarText: Color(0xFF202124),
+              dividerColor: Color(0xFFDADCE0),
             ),
     );
   }

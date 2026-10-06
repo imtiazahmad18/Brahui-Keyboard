@@ -39,25 +39,6 @@
       "dividerColor": "#DADCE0"
     },
     {
-      "id": "navy_dark",
-      "name": "Navy Dark",
-      "isDark": true,
-      "keyboardBackground": "#123A5E",
-      "normalKeyBackground": "#DCEFFD",
-      "normalKeyText": "#0C2A44",
-      "pressedKeyBackground": "#8CCDF2",
-      "actionKeyBackground": "#5CB4E8",
-      "actionKeyText": "#0C2A44",
-      "specialKeyBackground": "#0C2A44",
-      "specialKeyText": "#B9DFF7",
-      "primaryText": "#F4FAFF",
-      "secondaryText": "#8CCDF2",
-      "accentColor": "#5CB4E8",
-      "suggestionBarBackground": "#0C2A44",
-      "suggestionBarText": "#F4FAFF",
-      "dividerColor": "#214D70"
-    },
-    {
       "id": "pure_black",
       "name": "Pure Black (AMOLED)",
       "isDark": true,

@@ -25,7 +25,15 @@ class KeyboardPreferences(context: Context) {
     }
 
     var themeId: String
-        get() = prefs.getString(KEY_THEME_ID, "system") ?: "system"
+        get() {
+            val savedTheme = prefs.getString(KEY_THEME_ID, "system") ?: "system"
+            // Migrate the former hardcoded default when users upgrade.
+            if (savedTheme == "navy_dark") {
+                prefs.edit().putString(KEY_THEME_ID, "system").apply()
+                return "system"
+            }
+            return savedTheme
+        }
         set(value) = prefs.edit().putString(KEY_THEME_ID, value).apply()
 
     var themeMode: String

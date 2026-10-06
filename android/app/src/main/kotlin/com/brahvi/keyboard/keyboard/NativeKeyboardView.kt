@@ -50,16 +50,17 @@ class NativeKeyboardView(
     private val suggestionTextViews = mutableListOf<TextView>()
     private val toolbarButtons = mutableListOf<ImageButton>()
     private val innerKeyboardView: KeyCanvasView
-    private var currentTheme: NativeTheme = NativeTheme.defaultNavyDark()
+    private var currentTheme: NativeTheme = NativeTheme.defaultSystemDark()
     private lateinit var emojiKeyboardView: LinearLayout
     private lateinit var emojiGrid: GridView
     private val emojiCategoryButtons = mutableListOf<TextView>()
+    private val emojiActionButtons = mutableListOf<TextView>()
     private var emojiCategoryIndex = 0
     private var showingEmojiKeyboard = false
     private val emojiCategories by lazy { loadEmojiCategories() }
     private val emojiCategoryNames = listOf(
-        "Smileys", "People", "Animals & Nature", "Food & Drink", "Travel & Places",
-        "Activities", "Objects", "Symbols", "Flags"
+        "Smileys", "People", "Animals & Nature", "Food & Drink", "Activities",
+        "Travel & Places", "Objects & Symbols", "Flags"
     )
 
     init {
@@ -150,6 +151,7 @@ class NativeKeyboardView(
         toolbarButtons.forEach { it.imageTintList = android.content.res.ColorStateList.valueOf(theme.secondaryText) }
         emojiKeyboardView.setBackgroundColor(theme.keyboardBackground)
         emojiCategoryButtons.forEachIndexed { index, button -> styleEmojiCategoryButton(button, index == emojiCategoryIndex) }
+        emojiActionButtons.forEach { styleEmojiActionButton(it) }
         emojiGrid.setBackgroundColor(theme.keyboardBackground)
         innerKeyboardView.applyTheme(theme)
     }
@@ -198,8 +200,16 @@ class NativeKeyboardView(
                 .bufferedReader().use { JSONObject(it.readText()) }
             val categories = json.getJSONObject("categories")
             emojiCategoryNames.associateWith { name ->
-                val array = categories.optJSONArray(name) ?: return@associateWith emptyList()
-                List(array.length()) { index -> array.getString(index) }
+                val sourceNames = if (name == "Objects & Symbols") listOf("Objects", "Symbols") else listOf(name)
+                sourceNames.flatMap { sourceName ->
+                    val array = categories.optJSONArray(sourceName) ?: return@flatMap emptyList()
+                    List(array.length()) { index -> array.getString(index) }
+                }.let { emojis ->
+                    if (name != "Smileys") emojis else {
+                        val faceFirst = listOf("😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣")
+                        faceFirst.filter(emojis::contains) + emojis.filterNot(faceFirst::contains)
+                    }
+                }
             }
         }.getOrElse { emptyMap() }
     }
@@ -216,7 +226,13 @@ class NativeKeyboardView(
                 text = categoryIcon(name)
                 textSize = 19f
                 gravity = Gravity.CENTER
-                contentDescription = name
+                contentDescription = when (name) {
+                    "Smileys" -> "Smileys & Emotion"
+                    "People" -> "People & Body"
+                    "Activities" -> "Activities & Sports"
+                    "Objects & Symbols" -> "Objects & Symbols"
+                    else -> name
+                }
                 setPadding((12 * density).toInt(), 0, (12 * density).toInt(), 0)
                 setOnClickListener { showEmojiCategory(index) }
             }
@@ -255,6 +271,19 @@ class NativeKeyboardView(
             false
         }
         panel.addView(emojiGrid, LayoutParams(LayoutParams.MATCH_PARENT, 0, 1f))
+
+        val actionBar = LinearLayout(context).apply {
+            orientation = HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+            setPadding((4 * density).toInt(), (3 * density).toInt(), (4 * density).toInt(), (3 * density).toInt())
+        }
+        val backButton = emojiActionButton("ABC", "Back to keyboard") { toggleEmojiKeyboard() }
+        val deleteButton = emojiActionButton("⌫", "Delete") {
+            onKeyAction(NativeKey("⌫", null, KeyType.BACKSPACE, KeyAction.DELETE_BACKWARD))
+        }
+        actionBar.addView(backButton, LayoutParams(0, (40 * density).toInt(), 1f))
+        actionBar.addView(deleteButton, LayoutParams(0, (40 * density).toInt(), 1f))
+        panel.addView(actionBar, LayoutParams(LayoutParams.MATCH_PARENT, (46 * density).toInt()))
         return panel
     }
 
@@ -280,9 +309,24 @@ class NativeKeyboardView(
         "Food & Drink" -> "♨"
         "Travel & Places" -> "⌂"
         "Activities" -> "⚽"
-        "Objects" -> "▣"
-        "Symbols" -> "♡"
+        "Objects & Symbols" -> "💡"
         else -> "⚑"
+    }
+
+    private fun emojiActionButton(label: String, description: String, action: () -> Unit) =
+        TextView(context).apply {
+            text = label
+            textSize = 16f
+            gravity = Gravity.CENTER
+            contentDescription = description
+            setOnClickListener { action() }
+            emojiActionButtons.add(this)
+            styleEmojiActionButton(this)
+        }
+
+    private fun styleEmojiActionButton(button: TextView) {
+        button.setTextColor(currentTheme.specialKeyText)
+        button.setBackgroundColor(currentTheme.specialKeyBackground)
     }
 
     private inner class EmojiAdapter(val items: List<String>) : BaseAdapter() {

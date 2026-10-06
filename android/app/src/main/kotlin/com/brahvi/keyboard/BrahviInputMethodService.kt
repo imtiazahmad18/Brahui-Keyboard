@@ -10,7 +10,9 @@ import android.os.Vibrator
 import android.text.InputType
 import android.view.HapticFeedbackConstants
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import com.brahvi.keyboard.engine.SuggestionEngine
 import com.brahvi.keyboard.engine.UnicodeHelper
 import com.brahvi.keyboard.clipboard.ClipboardStore
@@ -71,10 +73,7 @@ class BrahviInputMethodService : InputMethodService() {
     }
 
     override fun onCreateInputView(): View {
-        android.util.Log.d(
-            "BrahviKeyboard",
-            "onCreateInputView called"
-        )
+        android.util.Log.d("BrahviKeyboard", "onCreateInputView called")
 
         keyboardView = NativeKeyboardView(
             context = this,
@@ -84,33 +83,37 @@ class BrahviInputMethodService : InputMethodService() {
             onOpenSettings = { openSettingsScreen() },
             onOpenClipboard = { showClipboardMenu() },
             onOpenThemes = { showThemeMenu() }
-        )
+        ).apply {
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        }
 
-        android.util.Log.d(
-            "BrahviKeyboard",
-            "NativeKeyboardView created"
-        )
+        android.util.Log.d("BrahviKeyboard", "NativeKeyboardView created")
 
         applyCurrentTheme()
 
         val defaultLang = prefs.defaultLanguage
-
-        val initialLayoutId =
-            if (defaultLang == "english") {
-                "english_normal"
-            } else {
-                preferredBrahviLayout()
-            }
+        val initialLayoutId = if (defaultLang == "english") {
+            "english_normal"
+        } else {
+            preferredBrahviLayout()
+        }
 
         currentLayoutId = initialLayoutId
         previousLanguageLayoutId = initialLayoutId
 
-        android.util.Log.d(
-            "BrahviKeyboard",
-            "Loading layout: $initialLayoutId"
-        )
+        android.util.Log.d("BrahviKeyboard", "Loading layout: $initialLayoutId")
 
+        // Populate initial key views
         switchLayout(initialLayoutId)
+
+        // Force an immediate measure pass before returning to the system
+        keyboardView?.measure(
+            View.MeasureSpec.makeMeasureSpec(resources.displayMetrics.widthPixels, View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        )
 
         return keyboardView!!
     }
@@ -215,8 +218,12 @@ class BrahviInputMethodService : InputMethodService() {
             }
 
             KeyAction.SWITCH_KEYBOARD -> {
-                (getSystemService(Context.INPUT_METHOD_SERVICE) as? android.view.inputmethod.InputMethodManager)
-                    ?.showInputMethodPicker()
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    if (!switchToNextInputMethod(false)) imm?.showInputMethodPicker()
+                } else {
+                    imm?.showInputMethodPicker()
+                }
             }
 
             KeyAction.NAVIGATE -> {
@@ -402,13 +409,21 @@ class BrahviInputMethodService : InputMethodService() {
 
     private fun applyCurrentTheme() {
         val theme = if (prefs.themeId == "system") systemTheme() else themesCache[prefs.themeId]
-        keyboardView?.applyTheme(theme ?: NativeTheme.defaultNavyDark())
+        keyboardView?.applyTheme(theme ?: systemTheme())
     }
 
     private fun systemTheme(): NativeTheme {
-        val nightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        val themeId = if (nightMode == Configuration.UI_MODE_NIGHT_YES) "navy_dark" else "light_white"
-        return themesCache[themeId] ?: NativeTheme.defaultNavyDark()
+        val themeId = if (isSystemInDarkMode(this)) "gboard_dark" else "light_white"
+        return themesCache[themeId] ?: if (isSystemInDarkMode(this)) {
+            NativeTheme.defaultSystemDark()
+        } else {
+            NativeTheme.defaultSystemLight()
+        }
+    }
+
+    private fun isSystemInDarkMode(context: Context): Boolean {
+        val nightModeFlags = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return nightModeFlags == Configuration.UI_MODE_NIGHT_YES
     }
 
     private fun performFeedback() {
@@ -570,8 +585,8 @@ class BrahviInputMethodService : InputMethodService() {
 
         } catch (e: Exception) {
 
-            themesCache["navy_dark"] =
-                NativeTheme.defaultNavyDark()
+            themesCache["gboard_dark"] = NativeTheme.defaultSystemDark()
+            themesCache["light_white"] = NativeTheme.defaultSystemLight()
         }
     }
 

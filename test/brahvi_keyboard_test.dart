@@ -184,10 +184,9 @@ void main() {
   });
 
   group('4. Theme IDs and Color Validation', () {
-    test('All 8 required themes exist and have valid hex colors', () {
+    test('All 7 user-selectable themes exist and have valid hex colors', () {
       final expectedThemeIds = [
         'light_white',
-        'navy_dark',
         'pure_black',
         'green',
         'olive',
