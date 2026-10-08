@@ -44,13 +44,14 @@ internal class KeyPreviewPopup(context: Context, private val onAlternate: (Strin
     fun showAlternates(anchor: View, values: List<String>, left: Int, top: Int, width: Int) {
         val density = anchor.resources.displayMetrics.density
         alternatives = values
-        // LinearLayout places the first child on the right in RTL, so the
-        // layout direction keeps the JSON alternate order in reading order.
-        displayedAlternatives = values
+        // Lay cells out physically left-to-right, and reverse the data for RTL
+        // so the first configured variant remains at the right edge.
+        val isRtl = anchor.layoutDirection == View.LAYOUT_DIRECTION_RTL
+        displayedAlternatives = if (isRtl) values.reversed() else values
         selected = displayedAlternatives.indexOf(values.firstOrNull()).coerceAtLeast(0)
         val strip = LinearLayout(anchor.context).apply {
             orientation = LinearLayout.HORIZONTAL
-            layoutDirection = anchor.layoutDirection
+            layoutDirection = View.LAYOUT_DIRECTION_LTR
             gravity = Gravity.CENTER
             setPadding((5 * density).toInt(), (5 * density).toInt(), (5 * density).toInt(), (5 * density).toInt())
             background = bubble(density, Color.rgb(36, 44, 58))

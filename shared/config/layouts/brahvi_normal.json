@@ -72,6 +72,7 @@
         "type": "CHARACTER",
         "action": "INSERT_TEXT",
         "alternates": [
+          "ئ",
           "ي"
         ]
       },
@@ -110,9 +111,15 @@
         "type": "CHARACTER",
         "action": "INSERT_TEXT",
         "alternates": [
-          "ث",
-          "س",
-          "ص",
+          "ث"
+        ]
+      },
+      {
+        "label": "ص",
+        "output": "ص",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
           "ض"
         ]
       },
@@ -197,6 +204,13 @@
         "alternates": [
           "ژ"
         ]
+      },
+      {
+        "label": "س",
+        "output": "س",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": []
       },
       {
         "label": "ن",

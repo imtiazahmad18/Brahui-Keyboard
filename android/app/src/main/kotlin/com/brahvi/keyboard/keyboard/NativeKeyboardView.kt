@@ -205,9 +205,17 @@ class NativeKeyboardView(
                     val array = categories.optJSONArray(sourceName) ?: return@flatMap emptyList()
                     List(array.length()) { index -> array.getString(index) }
                 }.let { emojis ->
-                    if (name != "Smileys") emojis else {
-                        val faceFirst = listOf("😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣")
-                        faceFirst.filter(emojis::contains) + emojis.filterNot(faceFirst::contains)
+                    val sorted = emojis
+                        .filterNot { name == "Flags" && it == "🇵🇰" }
+                        .distinct()
+                        .sorted()
+                    when (name) {
+                        "Flags" -> sorted
+                        "Smileys" -> {
+                            val faceFirst = listOf("😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣")
+                            faceFirst.filter(sorted::contains).sorted() + sorted.filterNot(faceFirst::contains)
+                        }
+                        else -> sorted
                     }
                 }
             }
@@ -464,7 +472,6 @@ class NativeKeyboardView(
 
         private val keyPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        private val subTextPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         private val globePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE }
 
         private val keyPreview = KeyPreviewPopup(context) { alternate ->
@@ -491,10 +498,6 @@ class NativeKeyboardView(
             textPaint.textAlign = Paint.Align.CENTER
             nastaliqTypeface?.let { textPaint.typeface = it }
 
-            subTextPaint.textSize = 14f * resources.displayMetrics.density
-            subTextPaint.textAlign = Paint.Align.CENTER
-            nastaliqTypeface?.let { subTextPaint.typeface = it }
-
             harakatPopup = HarakatPopupView(context, nastaliqTypeface ?: Typeface.DEFAULT) { harakatChar ->
                 val harakatKey = NativeKey(
                     label = harakatChar,
@@ -508,6 +511,11 @@ class NativeKeyboardView(
 
         fun setLayout(newLayout: NativeLayout) {
             this.layout = newLayout
+            layoutDirection = if (newLayout.isRtl) {
+                View.LAYOUT_DIRECTION_RTL
+            } else {
+                View.LAYOUT_DIRECTION_LTR
+            }
             if (width > 0 && height > 0) {
                 calculateKeyBounds(width, height)
             }
@@ -577,11 +585,6 @@ class NativeKeyboardView(
                 } else {
                     Typeface.DEFAULT
                 }
-                subTextPaint.typeface = if (key.alternates.any { it.containsArabicScript() }) {
-                    nastaliqTypeface ?: Typeface.DEFAULT
-                } else {
-                    Typeface.DEFAULT
-                }
 
                 val bgColor = when {
                     isPressed -> currentTheme.pressedKeyBackground
@@ -600,11 +603,13 @@ class NativeKeyboardView(
                 canvas.drawRoundRect(rect, radius, radius, keyPaint)
 
                 textPaint.color = textColor
+                textPaint.textAlign = Paint.Align.CENTER
                 textPaint.textSize = when (key.label) {
                     "ABC / بر" -> 12f * resources.displayMetrics.density
                     "#+=" -> 15f * resources.displayMetrics.density
                     "EN", "123" -> 16f * resources.displayMetrics.density
                     "space" -> 16f * resources.displayMetrics.density
+                    "براہوئی" -> 16f * resources.displayMetrics.density
                     else -> 28f * resources.displayMetrics.density
                 }
                 val textY = rect.centerY() - ((textPaint.descent() + textPaint.ascent()) / 2)
@@ -614,10 +619,6 @@ class NativeKeyboardView(
                     canvas.drawText(key.label, rect.centerX(), textY, textPaint)
                 }
 
-                if (key.alternates.isNotEmpty()) {
-                    subTextPaint.color = currentTheme.secondaryText
-                    canvas.drawText(key.alternates.first(), rect.right - 14f, rect.top + 22f, subTextPaint)
-                }
             }
         }
 

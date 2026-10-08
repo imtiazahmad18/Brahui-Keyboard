@@ -144,6 +144,12 @@ class BrahviInputMethodService : InputMethodService() {
         // FIX:
         // updateSuggestions expects List<String>, not String.
         updateSuggestions(emptyList())
+
+        // Start English fields with a one-shot capital when the cursor is at
+        // the beginning. The first typed letter returns the keyboard to lower case.
+        if (currentLayoutId.startsWith("english")) {
+            switchLayout(initialEnglishLayout())
+        }
     }
 
     private fun handleKey(key: NativeKey) {
@@ -158,6 +164,10 @@ class BrahviInputMethodService : InputMethodService() {
                     text,
                     1
                 )
+
+                if (currentLayoutId == "english_shift" && text.any { it.isLetter() }) {
+                    switchLayout("english_normal")
+                }
 
                 triggerSuggestionsUpdate()
             }
@@ -368,11 +378,18 @@ class BrahviInputMethodService : InputMethodService() {
         val target = if (currentLayoutId.startsWith("english")) {
             preferredBrahviLayout()
         } else {
-            "english_normal"
+            initialEnglishLayout()
         }
         previousLanguageLayoutId = target
         switchLayout(target)
     }
+
+    private fun initialEnglishLayout(): String =
+        if (currentInputConnection?.getTextBeforeCursor(1, 0).isNullOrEmpty()) {
+            "english_shift"
+        } else {
+            "english_normal"
+        }
 
     private fun recordCurrentClipboard() {
         if (!prefs.clipboardHistory) return

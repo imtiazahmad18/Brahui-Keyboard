@@ -17,7 +17,9 @@
         "output": "و",
         "type": "CHARACTER",
         "action": "INSERT_TEXT",
-        "alternates": []
+        "alternates": [
+          "ؤ"
+        ]
       },
       {
         "label": "ع",
@@ -63,7 +65,9 @@
         "output": "ی",
         "type": "CHARACTER",
         "action": "INSERT_TEXT",
-        "alternates": []
+        "alternates": [
+          "ئ"
+        ]
       },
       {
         "label": "ہ",
@@ -104,7 +108,10 @@
         "output": "د",
         "type": "CHARACTER",
         "action": "INSERT_TEXT",
-        "alternates": []
+        "alternates": [
+          "ڈ",
+          "ذ"
+        ]
       },
       {
         "label": "ف",
@@ -176,7 +183,18 @@
         "output": "ش",
         "type": "CHARACTER",
         "action": "INSERT_TEXT",
-        "alternates": []
+        "alternates": [
+          "ث"
+        ]
+      },
+      {
+        "label": "ص",
+        "output": "ص",
+        "type": "CHARACTER",
+        "action": "INSERT_TEXT",
+        "alternates": [
+          "ض"
+        ]
       },
       {
         "label": "چ",
