@@ -11,3 +11,5 @@ coverage/
 android/.gradle/
 build/
 *.iml
+.flutter-plugins-dependencies
+android/local.properties
